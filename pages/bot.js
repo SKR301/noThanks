@@ -24,28 +24,30 @@ export default class Bot extends Component{
     render () {
         return (
             <View style={styles.body}>
-                <View style={styles.rowX}>
-                    <View style={styles.colX}></View>
-                    <View style={styles.col}><Player1 /></View>
-                    <View style={styles.colX}></View>
-                </View>
+                <View style={styles.board}>
+                    <View style={styles.rowX}>
+                        <View style={styles.colX}></View>
+                        <View style={styles.col}><Player1 /></View>
+                        <View style={styles.colX}></View>
+                    </View>
 
-                <View style={styles.row}>
-                    <View style={styles.colX}>
-                        <Player2 />
+                    <View style={styles.row}>
+                        <View style={styles.colX}>
+                            <Player2 />
+                        </View>
+                        <View style={styles.col}>
+                            <Board />
+                        </View>
+                        <View style={styles.colX}>
+                            <Player3 />
+                        </View>
                     </View>
-                    <View style={styles.col}>
-                        <Board />
-                    </View>
-                    <View style={styles.colX}>
-                        <Player3 />
-                    </View>
-                </View>
 
-                <View style={styles.rowX}>
-                    <View style={styles.colX}></View>
-                    <View style={styles.col}><Player4 /></View>
-                    <View style={styles.colX}></View>
+                    <View style={styles.rowX}>
+                        <View style={styles.colX}></View>
+                        <View style={styles.col}><Player4 /></View>
+                        <View style={styles.colX}></View>
+                    </View>
                 </View>
             </View>
         );
@@ -58,19 +60,26 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
         width: Dimensions.get('window').width,
     },
+    board:{
+        flex: 1,
+        margin: 20,
+        borderColor: 'yellow',
+        borderWidth: 5,
+        borderRadius: 20
+    },
     row:{
         flex: 0.6,
         flexDirection: 'row',
     },
     col:{
         flex: 0.6,
-        borderColor: 'white',
-        borderWidth: 2
+        // borderColor: 'white',
+        // borderWidth: 2
     },
     colX:{
         flex: 0.2,
-        borderColor: 'white',
-        borderWidth: 2
+        // borderColor: 'white',
+        // borderWidth: 2
     },
     rowX:{
         flex: 0.2,

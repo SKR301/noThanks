@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     currCard:{
-        borderColor: 'dodgerblue',
+        borderColor: 'yellow',
         borderWidth: 10,
         borderRadius: 10,
         width: 100,
