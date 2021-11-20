@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Home from './pages/home';
 import Single from './pages/single';
+import Bot from './pages/bot';
 
 class App extends Component {
 	
@@ -11,8 +12,8 @@ class App extends Component {
 				<Switch>
 					<Route exact path="/" component={Home}/>
 					<Route path="/single" component={Single}/>
-					{/* <Route path="/multi" component={Multi}/>
-					<Route path="/bot" component={Bot}/> */}
+					{/* <Route path="/multi" component={Multi}/> */}
+					<Route path="/bot" component={Bot}/>
 				</Switch>
 			</Router>
 		);
