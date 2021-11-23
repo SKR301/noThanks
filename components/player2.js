@@ -21,7 +21,7 @@ export default class Player2 extends Component{
                 
                     {
                         this.state.cards.map((card) => (
-                            <View style={(this.state.cards.length > 6)?styles.cardFlexed:styles.cardUnflexed}>
+                            <View style={(this.state.cards.length > 10)?styles.cardFlexed:styles.cardUnflexed}>
                                 <Text key={card} style={styles.cardText}>{card}</Text>
                             </View>
                         ))
@@ -41,7 +41,9 @@ const styles = StyleSheet.create({
     cardContainer:{
         flex: 7,
         flexDirection: 'column',
-        marginTop: 100
+        backgroundColor: 'red',
+        justifyContent: 'center',
+        marginTop: 25
     },
     cardUnflexed:{
         height: 125,
@@ -49,20 +51,23 @@ const styles = StyleSheet.create({
         backgroundColor: '#29292a',
         borderWidth: 2,
         borderRadius: 15,
-        marginTop: -50
+        marginTop: -50,
+        alignContent: 'center'
     },
     cardFlexed:{
         flex: 1,
+        height: 125,
         borderColor: 'yellow',
         backgroundColor: '#29292a',
         borderWidth: 2,
         borderRadius: 15,
-        marginTop: -50
+        marginTop: -75,
+
     },
     cardText:{
         flex: 1,
         color: 'white',
-        padding: 15,
+        paddingLeft: 15,
         fontSize: 30
     },
     beadsContainer:{
