@@ -33,19 +33,19 @@ export default class Bot extends Component{
 
                     <View style={styles.row}>
                         <View style={styles.colX}>
-                            <Player2 />
+                            <Player4 />
                         </View>
                         <View style={styles.col}>
                             <Board />
                         </View>
                         <View style={styles.colX}>
-                            <Player3 />
+                            <Player2 />
                         </View>
                     </View>
 
                     <View style={styles.rowX}>
                         <View style={styles.colX}></View>
-                        <View style={styles.col}><Player4 /></View>
+                        <View style={styles.col}><Player3 /></View>
                         <View style={styles.colX}></View>
                     </View>
                 </View>
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
     },
     board:{
         flex: 1,
-        margin: 20,
+        marginVertical: 50,
+        marginHorizontal: 10,
         borderColor: 'yellow',
         borderWidth: 5,
         borderRadius: 20
@@ -72,14 +73,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     col:{
-        flex: 0.6,
-        // borderColor: 'white',
-        // borderWidth: 2
+        flex: 0.6
     },
     colX:{
-        flex: 0.2,
-        // borderColor: 'white',
-        // borderWidth: 2
+        flex: 0.2
     },
     rowX:{
         flex: 0.2,
