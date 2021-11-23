@@ -12,13 +12,11 @@ export default class Bot extends Component{
         super(props);
 
         this.state = {
-            // board: new Board(),
-            // players: {player1: new Player(),player2: new Player(),player3: new Player(),player4: new Player()}
+            playerTurn: Math.floor(Math.random() * 4) + 1,
         }
     }  
 
     componentDidMount(){
-        // console.log(this.state);
     }
 
     render () {
@@ -27,25 +25,37 @@ export default class Bot extends Component{
                 <View style={styles.board}>
                     <View style={styles.rowX}>
                         <View style={styles.colX}></View>
-                        <View style={styles.col}><Player1 /></View>
+                        <View style={styles.col}>
+                            {
+                                (this.state.playerTurn == 1)?<Player1 isMyTurn = {true}/>:<Player1 isMyTurn = {false}/>
+                            }
+                        </View>
                         <View style={styles.colX}></View>
                     </View>
 
                     <View style={styles.row}>
                         <View style={styles.colX}>
-                            <Player4 />
+                            {
+                                (this.state.playerTurn == 4)?<Player4 isMyTurn = {true}/>:<Player4 isMyTurn = {false}/>
+                            }
                         </View>
                         <View style={styles.col}>
                             <Board />
                         </View>
                         <View style={styles.colX}>
-                            <Player2 />
+                            {
+                                (this.state.playerTurn == 2)?<Player2 isMyTurn = {true}/>:<Player2 isMyTurn = {false}/>
+                            }
                         </View>
                     </View>
 
                     <View style={styles.rowX}>
                         <View style={styles.colX}></View>
-                        <View style={styles.col}><Player3 /></View>
+                        <View style={styles.col}>
+                            {
+                                (this.state.playerTurn == 3)?<Player3 isMyTurn = {true}/>:<Player3 isMyTurn = {false}/>
+                            }
+                        </View>
                         <View style={styles.colX}></View>
                     </View>
                 </View>
