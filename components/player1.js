@@ -4,7 +4,7 @@ import { View, StyleSheet, Text, TouchableOpacity, Dimensions, ImageBackground }
 export default class Player1 extends Component{
     constructor(props){
         super(props);
-        this.state = { beads: 4, cards: [1,2,3,4,5,6,7,8,9,0,1,2,3], score: 0};
+        this.state = { beads: 4, cards: [1,2,3,4,5], score: 0};
     }  
 
     componentDidMount(){
