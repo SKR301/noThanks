@@ -4,19 +4,17 @@ import { View, StyleSheet, Text, TouchableOpacity, Dimensions, ImageBackground }
 export default class Player1 extends Component{
     constructor(props){
         super(props);
-        this.state = { beads: 4, cards: [1], score: 0};
+        this.state = { beads: 4, cards: [], score: 0};
     }  
 
     componentDidMount(){
-        console.log(this.props.isMyTurn);
-        console.log(this.state);
     }
 
     render () {
         if(this.state.cards.length == 0){
             return (
                 <View style={styles.container}>
-                    <View style={styles.beadsContainer}>
+                    <View style={(this.props.isMyTurn)?styles.beadsContainerEnabled:styles.beadsContainerDisabled}>
                         <Text style={styles.beads}>{this.state.beads}</Text>
                     </View>
                     <View style={styles.cardContainer} >
