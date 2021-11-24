@@ -8,26 +8,40 @@ export default class Player2 extends Component{
     }  
 
     componentDidMount(){
-        console.log(this.state)
     }
 
     render () {
-        return (
-            <View style={styles.container}>
-                <View style={styles.beadsContainer}>
-                    <Text style={styles.beads}>{this.state.beads}</Text>
+        if(this.state.cards.length == 0){
+            return (
+                <View style={styles.container}>
+                    <View style={(this.props.isMyTurn)?styles.beadsContainerEnabled:styles.beadsContainerDisabled}>
+                        <Text style={styles.beads}>{this.state.beads}</Text>
+                    </View>
+                    <View style={styles.cardContainer} >
+                        <TouchableOpacity style={(this.props.isMyTurn)?styles.noCardsButtonEnabled:styles.noCardsButtonDisabled} onPress={()=>alert('addCard function')} disabled={!this.props.isMyTurn}>
+                            <Text style={(this.props.isMyTurn)?styles.noCardsTextEnabled:styles.noCardsTextDisabled}>Click to add</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-                <View style={styles.cardContainer}>
-                    {
-                        this.state.cards.map((card) => (
-                            <View style={(this.state.cards.length > 10)?styles.cardFlexed:styles.cardUnflexed}>
-                                <Text key={card} style={styles.cardText}>{card}</Text>
-                            </View>
-                        ))
-                    }
+            );
+        } else {
+            return (
+                <View style={styles.container}>
+                    <View style={(this.props.isMyTurn)?styles.beadsContainerEnabled:styles.beadsContainerDisabled}>
+                        <Text style={styles.beads}>{this.state.beads}</Text>
+                    </View>
+                    <TouchableOpacity style={styles.cardContainer} onPress={()=>alert('addCard function')} disabled={!this.props.isMyTurn}>
+                       {
+                            this.state.cards.map((card) => (
+                                <View style={(this.state.cards.length > 10)?styles.cardFlexed:styles.cardUnflexed}>
+                                    <Text key={card} style={styles.cardText}>{card}</Text>
+                                </View>
+                            ))
+                        }
+                    </TouchableOpacity>
                 </View>
-            </View>
-        );
+            );
+        }
     }
 }
 
@@ -67,6 +81,54 @@ const styles = StyleSheet.create({
         color: 'white',
         paddingLeft: 15,
         fontSize: 30
+    },
+    noCardsButtonEnabled:{
+        alignSelf: 'center',
+        borderColor: 'yellow',
+        borderWidth: 2,
+        borderRadius: 10,
+        padding: 10
+    },
+    noCardsButtonDisabled:{
+        alignSelf: 'center',
+        borderColor: 'orange',
+        borderWidth: 2,
+        borderRadius: 10,
+        padding: 10
+    },
+    noCardsTextEnabled:{
+        color: 'white',
+        fontSize: 30,
+        textAlign: 'center',
+        alignSelf: 'center'
+    },
+    noCardsTextDisabled:{
+        color: 'grey',
+        fontSize: 30,
+        textAlign: 'center',
+        alignSelf: 'center'
+    },
+    beadsContainerEnabled:{
+        flex: 3,
+        borderColor: 'red',
+        borderWidth: 5,
+        borderRadius: 100,
+        height: 105,
+        width: 100,
+        marginHorizontal: 20,
+        alignSelf: 'center',
+        justifyContent: 'center',
+    },
+    beadsContainerDisabled:{
+        flex: 3,
+        borderColor: 'dodgerblue',
+        borderWidth: 5,
+        borderRadius: 100,
+        height: 105,
+        width: 100,
+        marginHorizontal: 20,
+        alignSelf: 'center',
+        justifyContent: 'center',
     },
     beadsContainer:{
         flex: 3,
