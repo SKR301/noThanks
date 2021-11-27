@@ -4,25 +4,31 @@ import { View, StyleSheet, Text, TouchableOpacity, Dimensions, ImageBackground }
 export default class Board extends Component{
     constructor(props){
         super(props);
-        this.state = { beads: 0, cards: Array(35 - 3 + 1).fill().map((item, index) => 3 + index), currCard: 0 };
-
-        this.drawCard = this.drawCard.bind(this);
+        this.state = { 
+            beads: 0, 
+            cards: Array(35 - 3 + 1).fill().map((item, index) => 3 + index), 
+            currCard: 0 
+        };
     }  
 
     componentDidMount(){
-        console.log(this.state);
     }
 
-    drawCard(){
+    drawCard = () => {
         var index = Math.floor(Math.random() * this.state.cards.length);
-        this.setState({beads: 0, cards: this.state.cards.filter( (ele) => { return (ele != this.state.currCard) }), currCard: (this.state.cards[index] != undefined)? this.state.cards[index]: 0})
-        console.log(this.state.cards);
+        this.setState({
+            beads: 0, 
+            cards: this.state.cards.filter( (ele) => { return (ele != this.state.currCard) }), 
+            currCard: (this.state.cards[index] != undefined)? this.state.cards[index]: 0
+        }, () => {
+            this.props.sendCurrCard(this.state.currCard);
+        });
     }
 
     render () {
         return (
             <View style={styles.container}>
-                <TouchableOpacity style={styles.currCard} onPress={this.drawCard}>
+                <TouchableOpacity style={styles.currCard} onPress={this.drawCard} disabled={!(this.state.currCard==0)}>
                     <Text style={styles.currCardText}>{this.state.currCard}</Text>
                 </TouchableOpacity>
             </View>

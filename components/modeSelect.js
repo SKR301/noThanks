@@ -17,11 +17,13 @@ export default class ModeSelect extends Component{
                         <Text style={styles.txtMode}>Single Player</Text>
                     </TouchableOpacity>
                 </Link>
+                <Link to='/multi'>
                     <TouchableOpacity 
                         style={styles.btnMode}
                     >
                         <Text style={styles.txtMode}>Multi Player</Text>
                     </TouchableOpacity>
+                </Link>
                 <Link to='/bot'>
                     <TouchableOpacity 
                         style={styles.btnMode}
