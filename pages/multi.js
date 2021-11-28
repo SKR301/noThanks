@@ -13,18 +13,10 @@ export default class Multi extends Component{
 
         this.state = {
             playerTurn: Math.floor(Math.random() * 4) + 1,
-            currCard: 0,
         }
     }  
 
     componentDidMount(){
-    }
-
-    getCurrCard = (card) => {
-        this.setState({
-            playerTurn: this.state.playerTurn, 
-            currCard: card
-        });
     }
 
     render () {
@@ -35,7 +27,7 @@ export default class Multi extends Component{
                         <View style={styles.colX}></View>
                         <View style={styles.col}>
                             {
-                                (this.state.playerTurn == 1)?<Player1 isMyTurn = {true} currCard = {this.state.currCard}/>:<Player1 isMyTurn = {false}/>
+                                (this.state.playerTurn == 1)?<Player1 isMyTurn = {true}/>:<Player1 isMyTurn = {false}/>
                             }
                         </View>
                         <View style={styles.colX}></View>
@@ -44,15 +36,15 @@ export default class Multi extends Component{
                     <View style={styles.row}>
                         <View style={styles.colX}>
                             {
-                                (this.state.playerTurn == 4)?<Player4 isMyTurn = {true} currCard = {this.state.currCard}/>:<Player4 isMyTurn = {false}/>
+                                (this.state.playerTurn == 4)?<Player4 isMyTurn = {true}/>:<Player4 isMyTurn = {false}/>
                             }
                         </View>
                         <View style={styles.col}>
-                            <Board sendCurrCard = {this.getCurrCard}/>
+                            <Board />
                         </View>
                         <View style={styles.colX}>
                             {
-                                (this.state.playerTurn == 2)?<Player2 isMyTurn = {true} currCard = {this.state.currCard}/>:<Player2 isMyTurn = {false}/>
+                                (this.state.playerTurn == 2)?<Player2 isMyTurn = {true}/>:<Player2 isMyTurn = {false}/>
                             }
                         </View>
                     </View>
@@ -61,7 +53,7 @@ export default class Multi extends Component{
                         <View style={styles.colX}></View>
                         <View style={styles.col}>
                             {
-                                (this.state.playerTurn == 3)?<Player3 isMyTurn = {true} currCard = {this.state.currCard}/>:<Player3 isMyTurn = {false}/>
+                                (this.state.playerTurn == 3)?<Player3 isMyTurn = {true}/>:<Player3 isMyTurn = {false}/>
                             }
                         </View>
                         <View style={styles.colX}></View>
