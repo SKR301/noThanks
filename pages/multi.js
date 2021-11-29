@@ -12,11 +12,22 @@ export default class Multi extends Component{
         super(props);
 
         this.state = {
-            playerTurn: Math.floor(Math.random() * 4) + 1,
+            // playerTurn: Math.floor(Math.random() * 4) + 1,
+            playerTurn: 1,
+            currCard: 0,
+            boardBeads: 0,
         }
     }  
 
     componentDidMount(){
+    }
+
+    drawCard = (currCard, boardBeads) => {
+        this.setState({ 
+            playerTurn: this.state.playerTurn, 
+            currCard: currCard, 
+            boardBeads: boardBeads 
+        });
     }
 
     render () {
@@ -27,7 +38,7 @@ export default class Multi extends Component{
                         <View style={styles.colX}></View>
                         <View style={styles.col}>
                             {
-                                (this.state.playerTurn == 1)?<Player1 isMyTurn = {true}/>:<Player1 isMyTurn = {false}/>
+                                (this.state.playerTurn == 1)?<Player1 isMyTurn = {true} boardBeads = {this.state.boardBeads} currCard = {this.state.currCard} />:<Player1 isMyTurn = {false}/>
                             }
                         </View>
                         <View style={styles.colX}></View>
@@ -40,7 +51,7 @@ export default class Multi extends Component{
                             }
                         </View>
                         <View style={styles.col}>
-                            <Board />
+                            <Board drawCard = {this.drawCard}/>
                         </View>
                         <View style={styles.colX}>
                             {
