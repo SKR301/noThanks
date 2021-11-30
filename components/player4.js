@@ -20,6 +20,16 @@ export default class Player4 extends Component{
         }
     }
 
+    passCard = () => {
+        if(this.props.currCard != 0){
+            this.setState({ 
+                beads: this.state.beads - 1,
+                cards: this.state.cards,
+                score: this.state.score,
+            }, this.props.playerChoice('pass'));
+        }
+    }
+
     render () {
         if(this.state.cards.length == 0){
             return (
@@ -29,7 +39,7 @@ export default class Player4 extends Component{
                             <Text style={(this.props.isMyTurn)?styles.noCardsTextEnabled:styles.noCardsTextDisabled}>Click to add</Text>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={(this.props.isMyTurn)?styles.beadsContainerEnabled:styles.beadsContainerDisabled} onPress={()=>alert('passCard function')} disabled={!this.props.isMyTurn}>
+                    <TouchableOpacity style={(this.props.isMyTurn)?styles.beadsContainerEnabled:styles.beadsContainerDisabled} onPress={this.passCard} disabled={!this.props.isMyTurn}>
                         <Text style={styles.beads}>{this.state.beads}</Text>
                     </TouchableOpacity>
                 </View>
@@ -46,7 +56,7 @@ export default class Player4 extends Component{
                             ))
                         }
                     </TouchableOpacity>
-                    <TouchableOpacity style={(this.props.isMyTurn)?styles.beadsContainerEnabled:styles.beadsContainerDisabled} onPress={()=>alert('passCard function')} disabled={!this.props.isMyTurn}>
+                    <TouchableOpacity style={(this.props.isMyTurn)?styles.beadsContainerEnabled:styles.beadsContainerDisabled} onPress={this.passCard} disabled={!this.props.isMyTurn}>
                         <Text style={styles.beads}>{this.state.beads}</Text>
                     </TouchableOpacity>
                 </View>

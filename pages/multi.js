@@ -12,8 +12,8 @@ export default class Multi extends Component{
         super(props);
 
         this.state = {
-            playerTurn: Math.floor(Math.random() * 4) + 1,
-            // playerTurn: 1,
+            // playerTurn: Math.floor(Math.random() * 4) + 1,
+            playerTurn: 1,
             currCard: 0,
             boardBeads: 0,
         }
@@ -36,6 +36,13 @@ export default class Multi extends Component{
                 playerTurn: this.state.playerTurn,
                 currCard: 0,
                 boardBeads: 0,
+            });
+        }
+        if(choice == 'pass'){
+            this.setState({
+                playerTurn: ((this.state.playerTurn + 1) % 5 == 0)? 1: (this.state.playerTurn + 1) % 5,
+                currCard: this.state.currCard,
+                boardBeads: this.state.boardBeads + 1,
             });
         }
     }
