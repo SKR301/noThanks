@@ -10,12 +10,22 @@ export default class Player4 extends Component{
     componentDidMount(){
     }
 
+    addCard = () => {
+        if(this.props.currCard != 0){
+            this.setState({ 
+                beads: this.state.beads + this.props.boardBeads,
+                cards: [...this.state.cards, this.props.currCard],
+                score: this.state.score,
+            }, this.props.playerChoice('add'));
+        }
+    }
+
     render () {
         if(this.state.cards.length == 0){
             return (
                 <View style={styles.container}>
                     <View style={styles.cardContainer} >
-                        <TouchableOpacity style={(this.props.isMyTurn)?styles.noCardsButtonEnabled:styles.noCardsButtonDisabled} onPress={()=>alert('addCard function')} disabled={!this.props.isMyTurn}>
+                        <TouchableOpacity style={(this.props.isMyTurn)?styles.noCardsButtonEnabled:styles.noCardsButtonDisabled} onPress={this.addCard} disabled={!this.props.isMyTurn}>
                             <Text style={(this.props.isMyTurn)?styles.noCardsTextEnabled:styles.noCardsTextDisabled}>Click to add</Text>
                         </TouchableOpacity>
                     </View>
@@ -27,11 +37,11 @@ export default class Player4 extends Component{
         } else {
             return (
                 <View style={styles.container}>
-                    <TouchableOpacity style={styles.cardContainer} onPress={()=>alert('addCard function')} disabled={!this.props.isMyTurn}>
+                    <TouchableOpacity style={styles.cardContainer} onPress={this.addCard} disabled={!this.props.isMyTurn}>
                        {
                             this.state.cards.map((card) => (
-                                <View style={(this.state.cards.length > 10)?styles.cardFlexed:styles.cardUnflexed}>
-                                    <Text key={card} style={styles.cardText}>{card}</Text>
+                                <View key={card} style={(this.state.cards.length > 10)?styles.cardFlexed:styles.cardUnflexed}>
+                                    <Text style={styles.cardText}>{card}</Text>
                                 </View>
                             ))
                         }
