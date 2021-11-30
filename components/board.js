@@ -14,16 +14,25 @@ export default class Board extends Component{
         var index = Math.floor(Math.random() * this.state.cards.length);
         this.setState({
             beads: 0, 
-            cards: this.state.cards.filter( (ele) => { return (ele != this.state.currCard) }), 
-            currCard: (this.state.cards[index] != undefined)? this.state.cards[index]: 0
-        }, () => this.props.drawCard(this.state.currCard, this.state.beads));
+            currCard: (this.state.cards[index] != undefined)? this.state.cards[index]: 0,
+            cards: this.state.cards.filter((ele) => {return (ele != this.state.currCard)}),
+        }, () => { 
+            this.setState({
+                beads: 0, 
+                currCard: (this.state.cards[index] != undefined)? this.state.cards[index]: 0,
+                cards: this.state.cards.filter((ele) => {return (ele != this.state.currCard)}),
+            }, ()=>{
+                this.props.drawCard(this.state.currCard, this.state.beads);
+                console.log(this.state.cards);
+            });
+        });
     }
 
     render () {
         return (
             <View style={styles.container}>
-                <TouchableOpacity style={styles.currCard} onPress={this.drawCard} disabled={!(this.state.currCard==0)}>
-                    <Text style={styles.currCardText}>{this.state.currCard}</Text>
+                <TouchableOpacity style={styles.currCard} onPress={this.drawCard} disabled={!(this.props.boardState.currCard==0)}>
+                    <Text style={styles.currCardText}>{this.props.boardState.currCard}</Text>
                 </TouchableOpacity>
             </View>
         );
