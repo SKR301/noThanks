@@ -35,13 +35,13 @@ export default class Player2 extends Component{
 
     calcScore = () => {
         if(this.state.cards.length == 0){
-            this.props.calcScores(2, 0);
+            this.props.calcScores(2, -1 * this.state.beads);
         } else {
             var cards = this.state.cards.sort(function(a, b){return a-b});
             var playerScore = cards[0];
-            for(var a=1; a<cards.length-1; a++){
+            for(var a=1; a<cards.length; a++){
                 if(cards[a] != cards[a-1] + 1)
-                playerScore += cards[a];
+                    playerScore += cards[a];
             }
             playerScore -= this.state.beads;
             this.props.calcScores(2, playerScore);

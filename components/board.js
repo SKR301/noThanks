@@ -4,7 +4,7 @@ import { View, StyleSheet, Text, TouchableOpacity, Dimensions, ImageBackground }
 export default class Board extends Component{
     constructor(props){
         super(props);
-        this.state = { beads: 0, cards: Array(4 - 3 + 1).fill().map((item, index) => 3 + index), currCard: 0 };
+        this.state = { beads: 0, cards: Array(6 - 3 + 1).fill().map((item, index) => 3 + index), currCard: 0 };
     }  
 
     componentDidMount(){

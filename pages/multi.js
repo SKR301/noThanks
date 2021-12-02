@@ -13,8 +13,7 @@ export default class Multi extends Component{
         super(props);
 
         this.state = {
-            // playerTurn: Math.floor(Math.random() * 4) + 1,
-            playerTurn: 1,
+            playerTurn: Math.floor(Math.random() * 4) + 1,
             currCard: 0,
             boardBeads: 0,
             endGame: false,
@@ -67,7 +66,7 @@ export default class Multi extends Component{
     }
 
     calcScores = (playerIndex, score) => {
-        var scores = {'1':0,'2':0,'3':0,'4':0};
+        var scores = this.state.endScore;
         if(playerIndex == 1){
             scores['1'] = score;
         }
