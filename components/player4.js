@@ -39,7 +39,7 @@ export default class Player4 extends Component{
                             <Text style={(this.props.isMyTurn)?styles.noCardsTextEnabled:styles.noCardsTextDisabled}>Click to add</Text>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={(this.props.isMyTurn)?styles.beadsContainerEnabled:styles.beadsContainerDisabled} onPress={this.passCard} disabled={!this.props.isMyTurn}>
+                    <TouchableOpacity style={(this.props.isMyTurn)?styles.beadsContainerEnabled:styles.beadsContainerDisabled} onPress={this.passCard} disabled={!(this.props.isMyTurn && this.state.beads)}>
                         <Text style={styles.beads}>{this.state.beads}</Text>
                     </TouchableOpacity>
                 </View>
@@ -56,7 +56,7 @@ export default class Player4 extends Component{
                             ))
                         }
                     </TouchableOpacity>
-                    <TouchableOpacity style={(this.props.isMyTurn)?styles.beadsContainerEnabled:styles.beadsContainerDisabled} onPress={this.passCard} disabled={!this.props.isMyTurn}>
+                    <TouchableOpacity style={(this.props.isMyTurn)?styles.beadsContainerEnabled:styles.beadsContainerDisabled} onPress={this.passCard} disabled={!(this.props.isMyTurn && this.state.beads)}>
                         <Text style={styles.beads}>{this.state.beads}</Text>
                     </TouchableOpacity>
                 </View>

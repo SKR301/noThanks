@@ -23,7 +23,6 @@ export default class Board extends Component{
                 cards: this.state.cards.filter((ele) => {return (ele != this.state.currCard)}),
             }, ()=>{
                 this.props.drawCard(this.state.currCard, this.state.beads);
-                console.log(this.state.cards);
             });
         });
     }
@@ -34,6 +33,9 @@ export default class Board extends Component{
                 <TouchableOpacity style={styles.currCard} onPress={this.drawCard} disabled={!(this.props.boardState.currCard==0)}>
                     <Text style={styles.currCardText}>{this.props.boardState.currCard}</Text>
                 </TouchableOpacity>
+                <View style={styles.beadsContainer}>
+                    <Text style={styles.beads}>{this.props.boardState.boardBeads}</Text>
+                </View>
             </View>
         );
     }
@@ -59,7 +61,19 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         fontSize: 50
     },
+    beadsContainer:{
+        borderColor: 'deepskyblue',
+        borderWidth: 5,
+        borderRadius: 100,
+        height: 105,
+        width: 100,
+        marginTop: 20,
+        alignSelf: 'center',
+        justifyContent: 'center',
+    },
     beads:{
-        color: 'white'
+        color: 'white',
+        alignSelf: 'center',
+        fontSize: 50
     }
 })

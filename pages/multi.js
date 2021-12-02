@@ -55,7 +55,7 @@ export default class Multi extends Component{
                         <View style={styles.colX}></View>
                         <View style={styles.col}>
                             {
-                                (this.state.playerTurn == 1)?<Player1 isMyTurn = {true} boardBeads = {this.state.boardBeads} currCard = {this.state.currCard} playerChoice = {this.playerChoice}/>:<Player1 isMyTurn = {false}/>
+                                (this.state.playerTurn == 1)?<Player1 isMyTurn = {true} boardBeads = {this.state.boardBeads} currCard = {this.state.currCard} playerChoice = {this.playerChoice}/>:<Player1 isMyTurn = {false} mode = {'multi'}/>
                             }
                         </View>
                         <View style={styles.colX}></View>
