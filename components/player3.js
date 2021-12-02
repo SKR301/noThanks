@@ -4,7 +4,7 @@ import { View, StyleSheet, Text, TouchableOpacity, Dimensions, ImageBackground }
 export default class Player1 extends Component{
     constructor(props){
         super(props);
-        this.state = { beads: 4, cards: [], score: 0};
+        this.state = { beads: 4, cards: [], scoreCalc: false};
     }  
 
     componentDidMount(){
@@ -15,8 +15,11 @@ export default class Player1 extends Component{
             this.setState({ 
                 beads: this.state.beads + this.props.boardBeads,
                 cards: [...this.state.cards, this.props.currCard],
-                score: this.state.score,
-            }, this.props.playerChoice('add'));
+                scoreCalc: this.state.scoreCalc,
+            }, () => {
+                this.props.playerChoice('add')
+                this.state.cards.sort(function(a, b){return a-b});
+            });
         }
     }
 
@@ -25,12 +28,36 @@ export default class Player1 extends Component{
             this.setState({ 
                 beads: this.state.beads - 1,
                 cards: this.state.cards,
-                score: this.state.score,
+                scoreCalc: this.state.scoreCalc,
             }, this.props.playerChoice('pass'));
         }
     }
 
+    calcScore = () => {
+        if(this.state.cards.length == 0){
+            this.props.calcScores(3, 0);
+        } else {
+            var cards = this.state.cards.sort(function(a, b){return a-b});
+            var playerScore = cards[0];
+            for(var a=1; a<cards.length-1; a++){
+                if(cards[a] != cards[a-1] + 1)
+                playerScore += cards[a];
+            }
+            playerScore -= this.state.beads;
+            this.props.calcScores(3, playerScore);
+        }
+        return;
+    }
+
     render () {
+        if(this.props.endGame && !this.state.scoreCalc){
+            this.calcScore();
+            this.setState({
+                beads: this.state.beads,
+                cards: this.state.cards,
+                scoreCalc: true,
+            })
+        }
         if(this.state.cards.length == 0){
             return (
                 <View style={styles.container}>

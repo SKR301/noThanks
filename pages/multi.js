@@ -5,6 +5,7 @@ import Player1 from '../components/player1';
 import Player2 from '../components/player2';
 import Player3 from '../components/player3';
 import Player4 from '../components/player4';
+import Winner from '../components/winner';
 
 
 export default class Multi extends Component{
@@ -16,6 +17,8 @@ export default class Multi extends Component{
             playerTurn: 1,
             currCard: 0,
             boardBeads: 0,
+            endGame: false,
+            endScore: {'1':0,'2':0,'3':'0',4:0},
         }
     }  
 
@@ -23,11 +26,23 @@ export default class Multi extends Component{
     }
 
     drawCard = (currCard, boardBeads) => {
-        this.setState({ 
-            playerTurn: this.state.playerTurn, 
-            currCard: currCard, 
-            boardBeads: boardBeads 
-        });
+        if(currCard == 0){
+            this.setState({
+                playerTurn: this.state.playerTurn, 
+                currCard: currCard, 
+                boardBeads: boardBeads,
+                endGame: true,
+                endScore: this.state.endScore
+            });
+        } else {
+            this.setState({
+                playerTurn: this.state.playerTurn, 
+                currCard: currCard, 
+                boardBeads: boardBeads,
+                endGame: false,
+                endScore: this.state.endScore,
+            });
+        }
     }
 
     playerChoice = (choice) => {
@@ -36,6 +51,8 @@ export default class Multi extends Component{
                 playerTurn: this.state.playerTurn,
                 currCard: 0,
                 boardBeads: 0,
+                endGame: this.state.endGame,
+                endScore: this.state.endScore,
             });
         }
         if(choice == 'pass'){
@@ -43,8 +60,34 @@ export default class Multi extends Component{
                 playerTurn: ((this.state.playerTurn + 1) % 5 == 0)? 1: (this.state.playerTurn + 1) % 5,
                 currCard: this.state.currCard,
                 boardBeads: this.state.boardBeads + 1,
+                endGame: this.state.endGame,
+                endScore: this.state.endScore,
             });
         }
+    }
+
+    calcScores = (playerIndex, score) => {
+        var scores = {'1':0,'2':0,'3':0,'4':0};
+        if(playerIndex == 1){
+            scores['1'] = score;
+        }
+        if(playerIndex == 2){
+            scores['2'] = score;
+        }
+        if(playerIndex == 3){
+            scores['3'] = score;
+        }
+        if(playerIndex == 4){
+            scores['4'] = score;
+        }
+
+        this.setState({
+            playerTurn: this.state.playerTurn,
+            currCard: 0,
+            boardBeads: 0,
+            endGame: true,
+            endScore: scores,
+        });
     }
 
     render () {
@@ -55,7 +98,7 @@ export default class Multi extends Component{
                         <View style={styles.colX}></View>
                         <View style={styles.col}>
                             {
-                                (this.state.playerTurn == 1)?<Player1 isMyTurn = {true} boardBeads = {this.state.boardBeads} currCard = {this.state.currCard} playerChoice = {this.playerChoice}/>:<Player1 isMyTurn = {false} mode = {'multi'}/>
+                                (this.state.playerTurn == 1)?<Player1 isMyTurn = {true} boardBeads = {this.state.boardBeads} currCard = {this.state.currCard} playerChoice = {this.playerChoice} endGame = {this.state.endGame} calcScores = {this.calcScores}/>:<Player1 isMyTurn = {false} endGame = {this.state.endGame} calcScores = {this.calcScores}/>
                             }
                         </View>
                         <View style={styles.colX}></View>
@@ -64,15 +107,17 @@ export default class Multi extends Component{
                     <View style={styles.row}>
                         <View style={styles.colX}>
                             {
-                                (this.state.playerTurn == 4)?<Player4 isMyTurn = {true} boardBeads = {this.state.boardBeads} currCard = {this.state.currCard} playerChoice = {this.playerChoice}/>:<Player4 isMyTurn = {false}/>
+                                (this.state.playerTurn == 4)?<Player4 isMyTurn = {true} boardBeads = {this.state.boardBeads} currCard = {this.state.currCard} playerChoice = {this.playerChoice} endGame = {this.state.endGame} calcScores = {this.calcScores}/>:<Player4 isMyTurn = {false} endGame = {this.state.endGame} calcScores = {this.calcScores}/>
                             }
                         </View>
                         <View style={styles.col}>
-                            <Board drawCard = {this.drawCard} boardState = {this.state}/>
+                            {
+                                (this.state.endGame)?<Winner scores = {this.state.endScore}/>:<Board drawCard = {this.drawCard} boardState = {this.state}/>
+                            }
                         </View>
                         <View style={styles.colX}>
                             {
-                                (this.state.playerTurn == 2)?<Player2 isMyTurn = {true} boardBeads = {this.state.boardBeads} currCard = {this.state.currCard} playerChoice = {this.playerChoice}/>:<Player2 isMyTurn = {false}/>
+                                (this.state.playerTurn == 2)?<Player2 isMyTurn = {true} boardBeads = {this.state.boardBeads} currCard = {this.state.currCard} playerChoice = {this.playerChoice} endGame = {this.state.endGame} calcScores = {this.calcScores}/>:<Player2 isMyTurn = {false} endGame = {this.state.endGame} calcScores = {this.calcScores}/>
                             }
                         </View>
                     </View>
@@ -81,10 +126,10 @@ export default class Multi extends Component{
                         <View style={styles.colX}></View>
                         <View style={styles.col}>
                             {
-                                (this.state.playerTurn == 3)?<Player3 isMyTurn = {true} boardBeads = {this.state.boardBeads} currCard = {this.state.currCard} playerChoice = {this.playerChoice}/>:<Player3 isMyTurn = {false}/>
+                                (this.state.playerTurn == 3)?<Player3 isMyTurn = {true} boardBeads = {this.state.boardBeads} currCard = {this.state.currCard} playerChoice = {this.playerChoice} endGame = {this.state.endGame} calcScores = {this.calcScores}/>:<Player3 isMyTurn = {false} endGame = {this.state.endGame} calcScores = {this.calcScores}/>
                             }
                         </View>
-                        <View style={styles.colX} boardBeads = {this.state.boardBeads} currCard = {this.state.currCard} playerChoice = {this.playerChoice}></View>
+                        <View style={styles.colX}></View>
                     </View>
                 </View>
             </View>
