@@ -10,27 +10,21 @@ export default class ModeSelect extends Component{
     render () {
         return (
             <View style={styles.cntMode}>
-                <Link to='/single'>
-                    <TouchableOpacity 
-                        style={styles.btnMode}
-                    >
-                        <Text style={styles.txtMode}>Single Player</Text>
+                {/* <Link to='/single'> */}
+                    <TouchableOpacity style={styles.btnMode} disabled={true}>
+                        <Text style={styles.txtModeUnderConstruction}>Single Player</Text><Text style={styles.txtModeUnderConstruction}>(in progress)</Text>
                     </TouchableOpacity>
-                </Link>
+                {/* </Link> */}
                 <Link to='/multi'>
-                    <TouchableOpacity 
-                        style={styles.btnMode}
-                    >
+                    <TouchableOpacity style={styles.btnMode}>
                         <Text style={styles.txtMode}>Multi Player</Text>
                     </TouchableOpacity>
                 </Link>
-                <Link to='/bot'>
-                    <TouchableOpacity 
-                        style={styles.btnMode}
-                    >
-                        <Text style={styles.txtMode}>Bot Play</Text>
+                {/* <Link to='/bot'> */}
+                    <TouchableOpacity style={styles.btnMode} disabled={true}>
+                        <Text style={styles.txtModeUnderConstruction}>Bot Play</Text><Text style={styles.txtModeUnderConstruction}>(in progress)</Text>
                     </TouchableOpacity>
-                </Link>
+                {/* </Link> */}
             </View>
         );
     }
@@ -58,6 +52,10 @@ const styles = StyleSheet.create({
         fontSize: 50,
         color: 'white',
         padding: 10
-
+    },
+    txtModeUnderConstruction:{
+        fontSize: 25,
+        color: 'white',
+        padding: 5
     }
 })
