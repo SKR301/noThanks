@@ -24,20 +24,24 @@ export default class Winner extends Component{
         return(
             <View style={styles.container}>
                 <View style={styles.winnerTextContainer}>
-                    <Text style={styles.winnerText}>¡¡¡ win !!!</Text>
+                    <Text style={styles.winnerText}>¡¡¡ game over !!!</Text>
                 </View>
                 <View style={styles.scoreCard}>
                     <View style={(this.state.winner == 1)?styles.playerScoreContainerWinner:styles.playerScoreContainer}>
                         <Text style={(this.state.winner == 1)?styles.playerScoreTextWinner:styles.playerScoreText}>{this.props.scores['1']}</Text>
+                        <Text style={(this.state.winner == 1)?styles.playerTextWinner:styles.playerText}>Player1</Text>
                     </View>
                     <View style={(this.state.winner == 2)?styles.playerScoreContainerWinner:styles.playerScoreContainer}>
                         <Text style={(this.state.winner == 2)?styles.playerScoreTextWinner:styles.playerScoreText}>{this.props.scores['2']}</Text>
+                        <Text style={(this.state.winner == 2)?styles.playerTextWinner:styles.playerText}>Player2</Text>
                     </View>
                     <View style={(this.state.winner == 3)?styles.playerScoreContainerWinner:styles.playerScoreContainer}>
                         <Text style={(this.state.winner == 3)?styles.playerScoreTextWinner:styles.playerScoreText}>{this.props.scores['3']}</Text>
+                        <Text style={(this.state.winner == 3)?styles.playerTextWinner:styles.playerText}>Player3</Text>
                     </View>
                     <View style={(this.state.winner == 4)?styles.playerScoreContainerWinner:styles.playerScoreContainer}>
                         <Text style={(this.state.winner == 4)?styles.playerScoreTextWinner:styles.playerScoreText}>{this.props.scores['4']}</Text>
+                        <Text style={(this.state.winner == 4)?styles.playerTextWinner:styles.playerText}>Player4</Text>
                     </View>
                 </View>
             </View>
@@ -54,11 +58,15 @@ const styles = StyleSheet.create({
     winnerTextContainer:{
         flex: 5,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     winnerText:{
-        fontSize: 100,
-        color: 'white'
+        padding: 25,
+        fontSize: 50,
+        color: 'yellow',
+        // borderColor: 'gold',
+        // borderWidth: 5,
+        // borderRadius: 25
     },
     scoreCard:{
         flex: 5,
@@ -95,6 +103,14 @@ const styles = StyleSheet.create({
         color: 'aqua',
         fontSize: 200,
     },
+    playerTextWinner:{
+        color: 'palegreen',
+        fontSize: 25,
+    },
+    playerText:{
+        color: 'white',
+        fontSize: 25,
+    }
 
 
 })
